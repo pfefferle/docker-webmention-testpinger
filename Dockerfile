@@ -1,10 +1,15 @@
 FROM node:latest
 
-COPY dummy.js /opt/
 RUN npm install -g webmention-testpinger
 
 EXPOSE "8080"
 
-WORKDIR /opt/
+RUN git clone https://github.com/pfefferle/node-webmention-testendpoint.git -l /opt/webmention-testendpoint
 
-CMD ["node", "dummy.js"]
+WORKDIR /opt/webmention-testendpoint
+
+RUN npm install
+
+EXPOSE "9247"
+
+CMD ["node", "."]
