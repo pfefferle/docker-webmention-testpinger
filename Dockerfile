@@ -1,7 +1,10 @@
 FROM node:latest
 
+COPY dummy.js /opt/
 RUN npm install -g webmention-testpinger
 
 EXPOSE "8080"
 
-CMD ["node"]
+WORKDIR /opt/
+
+CMD ["node", "dummy.js"]
